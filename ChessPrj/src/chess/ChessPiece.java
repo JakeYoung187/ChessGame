@@ -15,9 +15,18 @@ public abstract class ChessPiece implements IChessPiece {
 		//complete this
 	}
 	
+	/**
+	 * Determines whether or not a move is legal given the current board state.
+	 * All this version of the method does is check to see if a particuular square is
+	 * on the board to begin with.
+	 * 
+	 * @param move the move to be made
+	 * @param board the current board state
+	 * @return whether or not the square is on the baord
+	 */
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		//complete this
-		// Won't this always be overriden anyway? -- Henry
+	 	return (move.toRow < 0 || move.toRow > 7 || move.toColumn < 0 ||
+	 		move.toColumn > 7);
 	}
 }
 
