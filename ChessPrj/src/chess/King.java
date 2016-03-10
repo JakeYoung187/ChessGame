@@ -20,8 +20,7 @@ public class King extends ChessPiece{
     int toColumn = move.toColumn;
     int fromColumn = move.fromColumn
     
-    if (toRow < 0 || toRow > 7 || toColumn < 0 || toColumn > 7)
-      vtr = false;
+
     
     if (fromRow > toRow - 1 || fromRow < toRow + 2 ||
       fromColumn > toColumn - 1 || fromColumn < toColumn + 2)
