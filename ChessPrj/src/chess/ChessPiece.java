@@ -3,6 +3,7 @@ package chess;
 public abstract class ChessPiece implements IChessPiece {
 	
 	private Player owner;
+	protected boolean hasMoved;
 	
 	protected ChessPiece(Player player) {
 		this.owner = player;
@@ -16,6 +17,7 @@ public abstract class ChessPiece implements IChessPiece {
 	
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		//complete this
+		// Won't this always be overriden anyway? -- Henry
 	}
 }
 
