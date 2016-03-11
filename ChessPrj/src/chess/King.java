@@ -14,17 +14,24 @@ public class King extends ChessPiece{
    * @return the legality of the move
    **/
   public boolean isValidMove(Move move, IChessPiece[][] board) {
+    if (!super.isValidMove(move, board))
+      return false;
+    
     boolean vtr = true;
     int toRow = move.toRow;
     int fromRow = move.fromRow;
     int toColumn = move.toColumn;
     int fromColumn = move.fromColumn
     
-
-    
-    if (fromRow > toRow - 1 || fromRow < toRow + 2 ||
-      fromColumn > toColumn - 1 || fromColumn < toColumn + 2)
+    if (Math.abs(toRow - fromRow) > 1 || Math.abs(toColumn - fromColumn) > 1)
       vtr = false;
+      
+    // TODO: Add castling functionality
+    /*
+    if (!hasMoved && Math.abs(fromColumn - toColumn) == 2 && toRow == fromRow && // Rook logic)
+    */
+    // TODO: check for check
+    
     return vtr;
   }
 }
