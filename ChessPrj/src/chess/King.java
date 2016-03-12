@@ -30,7 +30,6 @@ public class King extends ChessPiece{
     /*
     if (!hasMoved && Math.abs(fromColumn - toColumn) == 2 && toRow == fromRow && // Rook logic)
     */
-    // TODO: check for check
     
     return vtr;
   }
