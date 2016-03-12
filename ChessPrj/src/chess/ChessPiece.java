@@ -27,6 +27,9 @@ public abstract class ChessPiece implements IChessPiece {
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 	 	return (move.toRow < 0 || move.toRow > 7 || move.toColumn < 0 ||
 	 		move.toColumn > 7);
+	 		
+	 		// Possibly check for being in check here? No piece is allowed to make a move
+	 		// that would put its owner's king in check.
 	}
 }
 
