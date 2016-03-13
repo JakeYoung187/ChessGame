@@ -3,7 +3,6 @@ package chess;
 public abstract class ChessPiece implements IChessPiece {
 	
 	private Player owner;
-	protected boolean hasMoved;
 	
 	protected ChessPiece(Player player) {
 		this.owner = player;
@@ -12,24 +11,31 @@ public abstract class ChessPiece implements IChessPiece {
 	public abstract String type();
 	
 	public Player player() {
-		//complete this
+		return owner;
 	}
 	
-	/**
-	 * Determines whether or not a move is legal given the current board state.
-	 * All this version of the method does is check to see if a particuular square is
-	 * on the board to begin with.
-	 * 
-	 * @param move the move to be made
-	 * @param board the current board state
-	 * @return whether or not the square is on the baord
-	 */
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-	 	return (move.toRow < 0 || move.toRow > 7 || move.toColumn < 0 ||
-	 		move.toColumn > 7);
-	 		
-	 		// Possibly check for being in check here? No piece is allowed to make a move
-	 		// that would put its owner's king in check.
+		//check that move is a move
+	 	if(move.fromRow == move.toRow 
+	 			&& move.fromColumn == move.toColumn){
+	 		return false;
+	 	}
+	 	//check that move is on the board
+	 	else if(move.toRow < 0 || move.toRow > 7 
+	 			|| move.toColumn < 0 || move.toColumn > 7){
+	 		return false;
+	 	}
+	 	//check that the piece is the right type
+	 	else if(!this.type() 
+	 			== board[move.fromRow][move.fromColumn].type()){
+	 		return false;
+	 	}
+	 	//check that their isn't a friendly piece at the destination
+	 	else if(this.player() 
+	 			== board[move.toRow][move.toColumn].player()){
+	 		return false;
+	 	}
+	 	return true;
 	}
 }
 

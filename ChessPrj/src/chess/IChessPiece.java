@@ -1,5 +1,7 @@
 package chess;
 
+import java.lang.*;
+
 public interface IChessPiece {
 
 
