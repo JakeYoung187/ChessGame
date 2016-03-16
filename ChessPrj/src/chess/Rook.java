@@ -2,14 +2,17 @@ package chess;
 
 public class Rook extends ChessPiece {
 	
-	private Player owner;
-	
-	protected ChessPiece(Player player) {
+	protected Rook(Player player) {
+		super(player);
 		this.owner = player;
 	}
+
+	private Player owner;
+	
+	
 	
 	public String type(){
-		return "rook";
+		return "Rook";
 	}
 	
 	public Player player() {
@@ -17,12 +20,17 @@ public class Rook extends ChessPiece {
 	}
 	
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		if(super.isValidMove())
-	 	//check that the row or column stays the same
-	 	else if(!(move.fromRow == move.toRow 
-	 			|| move.fromColumn == move.toColumn){
-	 		return false;
-	 	}
-	 	return true;
+		if(super.isValidMove(move, board)) {
+			if(!(move.fromRow == move.toRow 
+					|| move.fromColumn == move.toColumn)){
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 }

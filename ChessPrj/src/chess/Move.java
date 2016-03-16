@@ -2,9 +2,10 @@ package chess;
 
 public class Move {
 
-	public int fromRow, fromColumn, toRow, toColumn;
+	public static int fromRow, fromColumn, toRow, toColumn;
 
 	public Move() {
+		
 	}
 
 	public Move(int fromRow, int fromColumn, int toRow, int toColumn) {
@@ -12,5 +13,21 @@ public class Move {
 		this.fromColumn = fromColumn;
 		this.toRow = toRow;
 		this.toColumn = toColumn;
+	}
+	
+	public static int getFromRow() {
+		return fromRow;
+	}
+	
+	public static int getToRow() {
+		return toRow;
+	}
+	
+	public static int getFromColumn() {
+		return fromColumn;
+	}
+	
+	public static int getToColumn() {
+		return toColumn;
 	}
 }

@@ -4,12 +4,13 @@ public class Bishop extends ChessPiece {
 	
 	private Player owner;
 	
-	protected ChessPiece(Player player) {
+	protected Bishop(Player player) {
+		super(player);
 		this.owner = player;
 	}
 	
 	public String type(){
-		return "bishop";
+		return "Bishop";
 	}
 	
 	public Player player() {
@@ -17,12 +18,16 @@ public class Bishop extends ChessPiece {
 	}
 	
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		if(super.isValidMove())
-	 	//check that the move is diagonal from the current spot
-	 	else if(!Math.abs(move.fromRow - move.toRow) 
-	 			== Math.abs(move.fromColumn - move.toColumn)){
-	 		return false;
-	 	}
-	 	return true;
+		if(super.isValidMove(move, board)) {
+			//check that the move is diagonal from the current spot
+			if(!(Math.abs(move.fromRow - move.toRow) 
+					== Math.abs(move.fromColumn - move.toColumn))){
+				return false;
+			}
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

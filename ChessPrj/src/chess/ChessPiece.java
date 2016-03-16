@@ -1,5 +1,8 @@
 package chess;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public abstract class ChessPiece implements IChessPiece {
 	
 	private Player owner;
@@ -26,8 +29,8 @@ public abstract class ChessPiece implements IChessPiece {
 	 		return false;
 	 	}
 	 	//check that the piece is the right type
-	 	else if(!this.type() 
-	 			== board[move.fromRow][move.fromColumn].type()){
+	 	else if(!(this.type() 
+	 			== board[move.fromRow][move.fromColumn].type())){
 	 		return false;
 	 	}
 	 	//check that their isn't a friendly piece at the destination
