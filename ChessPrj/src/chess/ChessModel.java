@@ -104,7 +104,18 @@ public class ChessModel implements IChessModel {
 	}
 	
 	public boolean squareIsThreatened(int row, int column, Player threatenedBy) {
-		for (int n = 7 - row)
+		for (int n = row; n > 0; n--) {
+			currentPiece = pieceAt(n, column);
+			if (currentPiece != null) {
+				if (currentPiece.player() != threatenedBy)
+					break;
+				else
+					if (currentPiece.canMoveOrthogonally());
+						return true;
+			}
+				
+		}
+		
 	} 
 	
 	//add other public or helper methods as needed
