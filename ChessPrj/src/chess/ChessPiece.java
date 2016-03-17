@@ -40,9 +40,5 @@ public abstract class ChessPiece implements IChessPiece {
 	 	}
 	 	return true;
 	}
-	
-	public boolean canMoveOrthogonally() {
-		return (this.type().equals("Rook") || this.type().equals("Queen"));
-	}
 }
 
