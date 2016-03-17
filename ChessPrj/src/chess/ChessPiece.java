@@ -33,7 +33,7 @@ public abstract class ChessPiece implements IChessPiece {
 	 			== board[move.fromRow][move.fromColumn].type())){
 	 		return false;
 	 	}
-	 	//check that their isn't a friendly piece at the destination
+	 	//check that there isn't a friendly piece at the destination
 	 	else if(this.player() 
 	 			== board[move.toRow][move.toColumn].player()){
 	 		return false;
