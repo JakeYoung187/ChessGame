@@ -103,6 +103,10 @@ public class ChessModel implements IChessModel {
 		return board[row][column];
 	}
 	
+	public boolean squareIsThreatened(int row, int column, Player threatenedBy) {
+		for (int n = 7 - row)
+	} 
+	
 	//add other public or helper methods as needed
 
 }
