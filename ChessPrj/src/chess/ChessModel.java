@@ -104,49 +104,15 @@ public class ChessModel implements IChessModel {
 	}
 	
 	public boolean squareIsThreatened(int row, int column, Player threatenedBy) {
-		for (int n = row; n > 0; n--) {
-			currentPiece = pieceAt(n, column);
-			if (currentPiece != null) {
-				if (currentPiece.player() != threatenedBy)
-					break;
-				else if (currentPiece.canMoveOrthogonally());
-					return true;
-			}
-				
-		}
-		
-		for (int n = row; n < 8; n++) {
-			currentPiece = pieceAt(n, column);
-			if (currentPiece != null) {
-				if (currentPiece.player() != threatenedBy)
-					break;
-				else if (currentPiece.canMoveOrthogonally());
+		for (int r = 0; r < 8; r++) {
+			for (int c = 0; c < 8; c++ /*best language*/) {
+				if (pieceAt(r, c).isValidMove(move(r, c, row, column),
+						board))
 					return true;
 			}
 		}
-		
-		for (int n = column; n > 0; n--) {
-			currentPiece = pieceAt(row, n);
-			if (currentPiece != null) {
-				if (currentPiece.player() != threatenedBy)
-					break;
-				else if (currentPiece.canMoveOrthogonally());
-					return true;
-			}
-				
-		}
-		
-		for (int n = column; n < 8; n++) {
-			currentPiece = pieceAt(row, n);
-			if (currentPiece != null) {
-				if (currentPiece.player() != threatenedBy)
-					break;
-				else if (currentPiece.canMoveOrthogonally());
-					return true;
-			}
-		}
-				
-	}	
+		return false;
+	}
 	
 	//add other public or helper methods as needed
 
