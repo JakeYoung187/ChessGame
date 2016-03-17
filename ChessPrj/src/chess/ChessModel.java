@@ -103,6 +103,17 @@ public class ChessModel implements IChessModel {
 		return board[row][column];
 	}
 	
+	public boolean squareIsThreatened(int row, int column, Player threatenedBy) {
+		for (int r = 0; r < 8; r++) {
+			for (int c = 0; c < 8; c++ /*best language*/) {
+				if (pieceAt(r, c).isValidMove(move(r, c, row, column),
+						board))
+					return true;
+			}
+		}
+		return false;
+	}
+	
 	//add other public or helper methods as needed
 
 }
