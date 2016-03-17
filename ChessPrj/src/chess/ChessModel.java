@@ -109,14 +109,44 @@ public class ChessModel implements IChessModel {
 			if (currentPiece != null) {
 				if (currentPiece.player() != threatenedBy)
 					break;
-				else
-					if (currentPiece.canMoveOrthogonally());
-						return true;
+				else if (currentPiece.canMoveOrthogonally());
+					return true;
 			}
 				
 		}
 		
-	} 
+		for (int n = row; n < 8; n++) {
+			currentPiece = pieceAt(n, column);
+			if (currentPiece != null) {
+				if (currentPiece.player() != threatenedBy)
+					break;
+				else if (currentPiece.canMoveOrthogonally());
+					return true;
+			}
+		}
+		
+		for (int n = column; n > 0; n--) {
+			currentPiece = pieceAt(row, n);
+			if (currentPiece != null) {
+				if (currentPiece.player() != threatenedBy)
+					break;
+				else if (currentPiece.canMoveOrthogonally());
+					return true;
+			}
+				
+		}
+		
+		for (int n = column; n < 8; n++) {
+			currentPiece = pieceAt(row, n);
+			if (currentPiece != null) {
+				if (currentPiece.player() != threatenedBy)
+					break;
+				else if (currentPiece.canMoveOrthogonally());
+					return true;
+			}
+		}
+				
+	}	
 	
 	//add other public or helper methods as needed
 
