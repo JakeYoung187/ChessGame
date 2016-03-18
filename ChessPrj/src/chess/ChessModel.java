@@ -7,7 +7,7 @@ public class ChessModel implements IChessModel {
 	private IChessPiece[][] board;
 	private Player player;
 	private IChessPiece currentPiece;
-	//declare other instance variables as needed
+	
 	
 	public ChessModel() {
 		board = new IChessPiece[8][8];
@@ -50,7 +50,7 @@ public class ChessModel implements IChessModel {
 		board[6][6] = new Pawn(Player.WHITE);
 		board[6][7] = new Pawn(Player.WHITE);
 		
-		//finish
+	
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ChessModel implements IChessModel {
 
 	@Override
 	public void move(Move move) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

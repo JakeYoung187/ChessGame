@@ -15,19 +15,5 @@ public class Move {
 		this.toColumn = toColumn;
 	}
 	
-	public static int getFromRow() {
-		return fromRow;
-	}
 	
-	public static int getToRow() {
-		return toRow;
-	}
-	
-	public static int getFromColumn() {
-		return fromColumn;
-	}
-	
-	public static int getToColumn() {
-		return toColumn;
-	}
 }

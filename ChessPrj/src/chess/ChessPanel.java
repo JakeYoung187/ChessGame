@@ -202,10 +202,7 @@ public class ChessPanel extends JPanel {
 					if(e.getSource() == board[a][b]) {
 						if(e.getButton() == MouseEvent.BUTTON1) {
 							if(numClicks == 1) {
-								numClicks++;
-								Move.fromRow = a;
-								Move.fromColumn = b;
-								//move
+								
 							}
 							
 						}

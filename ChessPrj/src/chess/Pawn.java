@@ -3,6 +3,10 @@ package chess;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/******************************************************************
+ * The specific variations to ChessPiece that make a Pawn 
+ * @author Logan R. Crowe, Jake Young, Henry McDonough
+ *****************************************************************/
 public class Pawn extends ChessPiece {
 	
 	private Player owner;
@@ -22,6 +26,9 @@ public class Pawn extends ChessPiece {
 		return owner;
 	}
 	
+	/*****************************************************************
+	 * Returns whether a move is allowed for a Pawn
+	 *****************************************************************/
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		if(super.isValidMove(move, board)) {
 			//check for attack move	

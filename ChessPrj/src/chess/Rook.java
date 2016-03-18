@@ -1,5 +1,9 @@
 package chess;
 
+/******************************************************************
+ * The specific variations to ChessPiece that make a Rook.  
+ * @author Logan R. Crowe, Jake Young, Henry McDonough
+ *****************************************************************/
 public class Rook extends ChessPiece {
 	
 	protected Rook(Player player) {
@@ -19,6 +23,9 @@ public class Rook extends ChessPiece {
 		return owner;
 	}
 	
+	/*****************************************************************
+	 * Returns whether a move is allowed for a Rook
+	 *****************************************************************/
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		if(super.isValidMove(move, board)) {
 			if(!(move.fromRow == move.toRow 
