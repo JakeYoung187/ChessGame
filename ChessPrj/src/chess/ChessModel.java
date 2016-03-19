@@ -1,16 +1,23 @@
 package chess;
 
+import java.awt.Panel;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class ChessModel implements IChessModel {
 	
 	private IChessPiece[][] board;
 	private Player player;
-	private IChessPiece currentPiece;
+	public IChessPiece currentPiece;
+	public IChessPiece[] takenPieces;
+	private int i = 0;
 	//declare other instance variables as needed
 	
 	public ChessModel() {
 		board = new IChessPiece[8][8];
+		takenPieces = new IChessPiece[32];
+		player = Player.WHITE;
 		
 		//-----back row for Black---------//
 		board[0][0] = new Rook(Player.BLACK);
@@ -55,7 +62,12 @@ public class ChessModel implements IChessModel {
 
 	@Override
 	public boolean isComplete() {
-		if(inCheck(Player.BLACK) || inCheck(Player.WHITE)) {
+		return false;
+	}
+
+	@Override
+	public boolean isValidMove(Move move) {
+		if(pieceAt(move.fromRow, move.fromColumn).isValidMove(move, board)) {
 			return true;
 		}
 		else {
@@ -64,15 +76,20 @@ public class ChessModel implements IChessModel {
 	}
 
 	@Override
-	public boolean isValidMove(Move move) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void move(Move move) {
-		// TODO Auto-generated method stub
-		
+		if(isValidMove(move)) {
+			if(pieceAt(move.toRow, move.toColumn) != null) {
+				add(pieceAt(move.toRow, move.toColumn));
+				board[Move.toRow][Move.toColumn] = pieceAt(move.fromRow, move.fromColumn);
+				board[Move.fromRow][Move.fromColumn] = null;
+			}
+			board[Move.toRow][Move.toColumn] = pieceAt(move.fromRow, move.fromColumn);
+			board[Move.fromRow][Move.fromColumn] = null;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Not a valid move.");
+		}
+		currentPiece = null;
 	}
 
 	@Override
@@ -83,12 +100,7 @@ public class ChessModel implements IChessModel {
 
 	@Override
 	public Player currentPlayer() {
-		if(player == Player.BLACK) {
-			return Player.BLACK;
-		}
-		else {
-			return Player.WHITE;
-		}
+		return player;
 	}
 	
 	public int numRows() {
@@ -103,15 +115,21 @@ public class ChessModel implements IChessModel {
 		return board[row][column];
 	}
 	
-	public boolean squareIsThreatened(int row, int column, Player threatenedBy) {
-		for (int r = 0; r < 8; r++) {
-			for (int c = 0; c < 8; c++ /*best language*/) {
-				if (pieceAt(r, c).isValidMove(move(r, c, row, column),
-						board))
-					return true;
-			}
-		}
-		return false;
+	public void setNextPlayer() {
+		player = player.next();
+	}
+	
+	public IChessPiece[] add(IChessPiece x) {
+		takenPieces[i] = x;
+		return takenPieces;
+	}
+	
+	public void setCurrentPiece(IChessPiece p) {
+		currentPiece = p;
+	}
+	
+	public IChessPiece getCurrentPiece() {
+		return currentPiece;
 	}
 	
 	//add other public or helper methods as needed

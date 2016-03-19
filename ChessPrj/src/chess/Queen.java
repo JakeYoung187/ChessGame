@@ -21,8 +21,8 @@ public class Queen extends ChessPiece {
 		if(super.isValidMove(move, board)) {
 			if(!(Math.abs(move.fromRow - move.toRow) 
 					== Math.abs(move.fromColumn - move.toColumn))) {
-				if(!(Math.abs(move.fromRow - move.toRow) 
-						== Math.abs(move.fromColumn - move.toColumn))) {
+				if(!(move.fromRow == move.toRow 
+						|| move.fromColumn == move.toColumn)) {
 					return false;
 				}
 			}
