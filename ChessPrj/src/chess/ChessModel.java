@@ -10,13 +10,12 @@ public class ChessModel implements IChessModel {
 	private IChessPiece[][] board;
 	private Player player;
 	public IChessPiece currentPiece;
-	public IChessPiece[] takenPieces;
-	private int i = 0;
+	public ArrayList<IChessPiece>[] takenPieces;
 	//declare other instance variables as needed
 	
 	public ChessModel() {
 		board = new IChessPiece[8][8];
-		takenPieces = new IChessPiece[32];
+		takenPieces = new ArrayList[32];
 		player = Player.WHITE;
 		
 		//-----back row for Black---------//
@@ -79,11 +78,11 @@ public class ChessModel implements IChessModel {
 	public void move(Move move) {
 		if(isValidMove(move)) {
 			if(pieceAt(move.toRow, move.toColumn) != null) {
-				add(pieceAt(move.toRow, move.toColumn));
-				board[Move.toRow][Move.toColumn] = pieceAt(move.fromRow, move.fromColumn);
+				//add(pieceAt(move.toRow, move.toColumn));
+				board[Move.toRow][Move.toColumn] = board[Move.fromRow][Move.fromColumn];
 				board[Move.fromRow][Move.fromColumn] = null;
 			}
-			board[Move.toRow][Move.toColumn] = pieceAt(move.fromRow, move.fromColumn);
+			board[Move.toRow][Move.toColumn] = board[Move.fromRow][Move.fromColumn];
 			board[Move.fromRow][Move.fromColumn] = null;
 		}
 		else {
@@ -119,10 +118,10 @@ public class ChessModel implements IChessModel {
 		player = player.next();
 	}
 	
-	public IChessPiece[] add(IChessPiece x) {
-		takenPieces[i] = x;
-		return takenPieces;
-	}
+//	public IChessPiece[] add(IChessPiece x) {
+//		takenPieces[i] = x;
+//		return takenPieces;
+//	}
 	
 	public void setCurrentPiece(IChessPiece p) {
 		currentPiece = p;

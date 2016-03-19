@@ -1,34 +1,53 @@
 package chess;
 
 public class Rook extends ChessPiece {
-	
+
 	protected Rook(Player player) {
 		super(player);
 		this.owner = player;
 	}
 
 	private Player owner;
-	
-	
-	
-	public String type(){
+
+	public String type() {
 		return "Rook";
 	}
-	
+
 	public Player player() {
 		return owner;
 	}
-	
+
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		if(super.isValidMove(move, board)) {
-			if(!(move.fromRow == move.toRow 
-					|| move.fromColumn == move.toColumn)){
+		/*holds a step value*/
+		int stepValue = 0;	
+		//check the super 
+		if (super.isValidMove(move, board)) {
+			//check that its a valid Rook move
+			if (!(move.fromRow == move.toRow || move.fromColumn == move.toColumn)) {
 				return false;
-			}
+			} 
 			else {
-				return true;
+				//check that to move is along a row
+				if (move.toRow - move.fromRow != 0) {
+					stepValue = (-(move.fromRow - move.toRow)/ Math.abs(move.fromRow - move.toRow));
+					for (int i = (move.fromRow + stepValue); i != move.toRow; i = i + stepValue) {
+						if (board[i][move.fromColumn] != null) {
+							return false;
+						}
+					}
+					return true;
+				}
+				else{
+					stepValue = (-(move.fromColumn - move.toColumn)/ Math.abs(move.fromColumn - move.toColumn));
+					for (int i = (move.fromColumn + stepValue); i != move.toColumn; i = i + stepValue) {
+						if (board[move.fromRow][i] != null) {
+							return false;
+						}
+					}
+					return true;
+				}
 			}
-		}
+		} 
 		else {
 			return false;
 		}
