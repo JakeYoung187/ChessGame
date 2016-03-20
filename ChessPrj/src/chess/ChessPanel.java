@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -23,7 +24,7 @@ public class ChessPanel extends JPanel {
 	private JButton[][] board;
 	private ChessModel model;
 	private JButton cell;
-	private MouseListener mouselistener;
+	public Move currentMove;
 	
 	//Images
 	private Image bPawn;
@@ -68,15 +69,9 @@ public class ChessPanel extends JPanel {
 		for(int row = 0; row < 8; row++) {
 			for(int col = 0; col < 8; col++) {
 				board[row][col] = new JButton("");
-				board[row][col].addMouseListener(mouselistener);
+				board[row][col].addMouseListener(listener);
 				board[row][col].setPreferredSize(new Dimension(100, 100));
 				center.add(board[row][col]);
-				if(row % 2 == col % 2) {
-					board[row][col].setBackground(Color.WHITE);
-				}
-				else {
-					board[row][col].setBackground(Color.GRAY);
-				}
 			}
 		}
 		displayBoard();
@@ -86,6 +81,12 @@ public class ChessPanel extends JPanel {
 	private void displayBoard() {
 		for(int r = 0; r < 8; r++) {
 			for(int c = 0; c < 8; c++) {
+				if(r % 2 == c % 2) {
+					board[r][c].setBackground(Color.WHITE);
+				}
+				else {
+					board[r][c].setBackground(Color.GRAY);
+				}
 				if(model.pieceAt(r, c) != null) {
 					if(model.pieceAt(r, c).type() == "Pawn") {
 						if(model.pieceAt(r, c).player() == Player.WHITE) {
@@ -134,22 +135,13 @@ public class ChessPanel extends JPanel {
 						else {
 							board[r][c].setIcon(blackKing);
 						}
-					}
-					
+					}	
 				}
-				
-				
-				
-				
-				
-				
-				
+				else {
+					board[r][c].setIcon(null);
+				}
 			}
 		}
-	}
-	
-	public void hightlight() {
-		//highlight possible moves if right clicked
 	}
 	
 	private void addIcons() {
@@ -189,8 +181,22 @@ public class ChessPanel extends JPanel {
 		}
 	}
 	
+	public void highlight(int x, int y) {
+		IChessPiece temp = model.pieceAt(x, y);
+		for(int t = 0; t < 8; t++) {
+			for(int g = 0; g < 8; g++) {
+				currentMove.toRow = t;
+				currentMove.toColumn = g;
+				if(model.isValidMove(currentMove)) {
+					board[t][g].setBackground(Color.GREEN);
+				}
+			}
+		}
+	}
+	
 	//add other helper methods
 	
+<<<<<<< HEAD
 	//inner class that represents action listener for buttons
 	private class mouseListener implements MouseListener {
 		
@@ -203,40 +209,79 @@ public class ChessPanel extends JPanel {
 						if(e.getButton() == MouseEvent.BUTTON1) {
 							if(numClicks == 1) {
 								
+=======
+	
+		MouseListener listener = new MouseListener() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				//possibly display piece name	
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				for(int a = 0; a < 8; a++) {
+					for(int b = 0; b < 8; b++) {
+						if(e.getSource() == board[a][b]) {
+							if(e.getButton() == MouseEvent.BUTTON1) {
+								if(model.pieceAt(a, b) != null) {
+									if(model.pieceAt(a, b).player() == model.currentPlayer()) {
+										model.setCurrentPiece(model.pieceAt(a, b));
+										currentMove.fromRow = a;
+										currentMove.fromColumn = b;
+									}
+									else if(model.pieceAt(a, b).player() != model.currentPlayer()) {
+										currentMove.toRow = a;
+										currentMove.toColumn = b;
+										model.move(currentMove);
+										model.setNextPlayer();
+									}	
+								}
+								else {
+									currentMove.toRow = a;
+									currentMove.toColumn = b;
+									model.move(currentMove);
+									model.setNextPlayer();
+								}
+								displayBoard();
 							}
-							
-						}
-						else if(e.getButton() == MouseEvent.BUTTON3) {
-							//highlight possible moves
-							//for special features
+							if(e.getButton() == MouseEvent.BUTTON3) {
+								if(e.getSource() == board[a][b]) {
+									if(model.getCurrentPiece() == null) {
+										if(model.pieceAt(a, b) != null) {
+											if(model.pieceAt(a, b).player()
+													== model.currentPlayer()) {
+												currentMove.fromRow = a;
+												currentMove.fromColumn = b;
+												highlight(a, b);
+											}
+										}
+									}
+								}
+>>>>>>> special
+							}
 						}
 					}
 				}
 			}
-		}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
 
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			//possibly display piece name	
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
 	}
 
-}

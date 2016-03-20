@@ -42,15 +42,15 @@ public abstract class ChessPiece implements IChessPiece {
 	 		return false;
 	 	}
 	 	//check that the piece is the right type
-	 	else if(!(this.type() 
-	 			== board[move.fromRow][move.fromColumn].type())){
-	 		return false;
-	 	}
-	 	//check that there isn't a friendly piece at the destination
-	 	else if(this.player() 
-	 			== board[move.toRow][move.toColumn].player()){
-	 		return false;
-	 	}
+//	 	else if(!(this.type() 
+//	 			== board[move.fromRow][move.fromColumn].type())){
+//	 		return false;
+//	 	}
+	 	//check that their isn't a friendly piece at the destination
+//	 	else if(this.owner 
+//	 			== board[Move.toRow][Move.toColumn].player()){
+//	 		return false;
+//	 	}
 	 	return true;
 	}
 }

@@ -1,9 +1,11 @@
 package chess;
 
+import java.awt.Panel;
+
 public class Move {
-
+	
 	public static int fromRow, fromColumn, toRow, toColumn;
-
+	
 	public Move() {
 		
 	}
@@ -14,6 +16,9 @@ public class Move {
 		this.toRow = toRow;
 		this.toColumn = toColumn;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> special
 }
